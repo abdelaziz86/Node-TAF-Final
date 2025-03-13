@@ -1,0 +1,73 @@
+<%- include("partials/header") %>
+
+    <h2 class="text-center mb-4">📚 Liste des Livres</h2>
+
+    <!-- Search Form -->
+    <form action="/" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Rechercher par titre ou auteur"
+                value="<%= search %>">
+            <button class="btn btn-primary" type="submit">🔍 Rechercher</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Année</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% books.forEach(book=> { %>
+                <tr>
+                    <td>
+                        <%= book.title %>
+                    </td>
+                    <td>
+                        <%= book.author %>
+                    </td>
+                    <td>
+                        <%= book.year %>
+                    </td>
+                    <td>
+                        <a href="/<%= book._id %>" class="btn btn-info btn-sm">👁️ Voir</a>
+                        <a href="/edit/<%= book._id %>" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                        <form action="/delete/<%= book._id %>" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <% if (currentPage> 1) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= currentPage - 1 %>&search=<%= search %>">Précédent</a>
+                </li>
+                <% } %>
+
+                    <% for (let i=1; i <=totalPages; i++) { %>
+                        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                            <a class="page-link" href="?page=<%= i %>&search=<%= search %>">
+                                <%= i %>
+                            </a>
+                        </li>
+                        <% } %>
+
+                            <% if (currentPage < totalPages) { %>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="?page=<%= currentPage + 1 %>&search=<%= search %>">Suivant</a>
+                                </li>
+                                <% } %>
+        </ul>
+    </nav>
+
+    <%- include("partials/footer") %>

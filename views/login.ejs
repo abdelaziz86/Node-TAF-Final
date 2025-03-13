@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+
+    <div class="auth-container">
+        <h2>Se Connecter</h2>
+        <form action="/auth/login" method="POST">
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Mot de Passe</label>
+            <input type="password" name="password" required>
+
+            <button type="submit" class="btn btn-primary">Connexion</button>
+        </form>
+
+        <p>Pas encore inscrit ? <a href="/auth/signup">Créer un compte</a></p>
+    </div>
+
+    <%- include("partials/footer") %>

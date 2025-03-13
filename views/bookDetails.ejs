@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+    <h2 class="text-center">📖 Détails du Livre</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4>
+                <%= book.title %>
+            </h4>
+            <p><strong>Auteur :</strong>
+                <%= book.author %>
+            </p>
+            <p><strong>Année :</strong>
+                <%= book.year %>
+            </p>
+            <p><strong>Résumé :</strong>
+                <%= book.summary || "Aucun résumé disponible." %>
+            </p>
+            <a href="/" class="btn btn-secondary">⬅️ Retour</a>
+        </div>
+    </div>
+
+    <%- include("partials/footer") %>
